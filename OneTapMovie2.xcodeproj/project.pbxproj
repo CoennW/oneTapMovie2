@@ -17,6 +17,7 @@
 		F503045D1EEC0DDD0035A876 /* OneTapMovie2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503045C1EEC0DDD0035A876 /* OneTapMovie2Tests.swift */; };
 		F50304681EEC0DDD0035A876 /* OneTapMovie2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50304671EEC0DDD0035A876 /* OneTapMovie2UITests.swift */; };
 		F50304761EEC12DE0035A876 /* SearchPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50304751EEC12DE0035A876 /* SearchPageViewController.swift */; };
+		F50304781EEC6F960035A876 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50304771EEC6F960035A876 /* ResultViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		F50304671EEC0DDD0035A876 /* OneTapMovie2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTapMovie2UITests.swift; sourceTree = "<group>"; };
 		F50304691EEC0DDD0035A876 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F50304751EEC12DE0035A876 /* SearchPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPageViewController.swift; sourceTree = "<group>"; };
+		F50304771EEC6F960035A876 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		F78B95E938BC43D2CC1EEE1D /* Pods-OneTapMovie2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneTapMovie2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OneTapMovie2UITests/Pods-OneTapMovie2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F859B3B0FB630DAF44F121D3 /* Pods-OneTapMovie2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneTapMovie2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OneTapMovie2/Pods-OneTapMovie2.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,6 +141,7 @@
 			children = (
 				F50304471EEC0DDD0035A876 /* AppDelegate.swift */,
 				F503044B1EEC0DDD0035A876 /* Main.storyboard */,
+				F50304771EEC6F960035A876 /* ResultViewController.swift */,
 				F50304751EEC12DE0035A876 /* SearchPageViewController.swift */,
 				F503044E1EEC0DDD0035A876 /* Assets.xcassets */,
 				F50304501EEC0DDD0035A876 /* LaunchScreen.storyboard */,
@@ -448,6 +451,7 @@
 			files = (
 				F50304481EEC0DDD0035A876 /* AppDelegate.swift in Sources */,
 				F50304761EEC12DE0035A876 /* SearchPageViewController.swift in Sources */,
+				F50304781EEC6F960035A876 /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

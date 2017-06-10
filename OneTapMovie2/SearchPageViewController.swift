@@ -30,15 +30,15 @@ class SearchPageViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var yearsArray = ["2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010" ,"2011", "", "2012", "2013", "2014" ,"2015" ,"2016" ,"2017"]
     
     //data for search and passing(optional other controllers)
-    var selectedFromYear = ""
-    var selectedTillYear = "tes"
+    var selectedFromYear = String()
+    var selectedTillYear = String()
     var selectedGenre = String()
     var selectedDuration = String()
     var selectedTotalVotes = Double()
     var selectedVoteAvarage = Double()
     
     //Selected from searchforMOvie
-    var selectedMovie = [MovieMDB]()
+    var selectedMovieArray = [MovieMDB]()
     
     //api key for The Movie Database
     let apiKey = "279e6330590f5e8788be345bf87321ca"
@@ -50,15 +50,15 @@ class SearchPageViewController: UIViewController, UIPickerViewDelegate, UIPicker
         //set data to pickerviews
         fillPickerDataSource()
         
-        //search for movie with selected data 
+        
         
         
     }
     
     @IBAction func searchTapped(_ sender: Any) {
-        
+        //var for movie genre code
         var movieCode = String()
-        
+        //make data ready for search
         selectedFromYear = fromYearField.text! + "-01-01"
         selectedTillYear = tillYearField.text! + "-01-01"
         selectedVoteAvarage = Double(voteAvarageField.text!)!
@@ -68,11 +68,13 @@ class SearchPageViewController: UIViewController, UIPickerViewDelegate, UIPicker
             movieCode = movieGenre.code
         }
         
-        
-        DiscoverMovieMDB.discoverMovies(apikey: apiKey, language: "EN", page: 1, sort_by: DiscoverSortByMovie.vote_average_asc, year: nil, certification_country: nil, certification: nil, certification_lte: nil, include_adult: nil, include_video: nil, timezone: nil, primary_release_year: nil, primary_release_date_gte: selectedFromYear, primary_release_date_lte: selectedTillYear, release_date_gte: nil, release_date_lte: nil, vote_average_gte: selectedVoteAvarage, vote_average_lte: selectedVoteAvarage, vote_count_gte: nil, vote_count_lte: nil, with_genres: movieCode, with_cast: nil, with_crew: nil, with_companies: nil, with_keywords: nil, with_people: nil) { (data, movieArray) in
+        //search query
+        DiscoverMovieMDB.discoverMovies(apikey: apiKey, language: "EN", page: 1, sort_by: DiscoverSortByMovie.vote_count_desc, year: nil, certification_country: nil, certification: nil, certification_lte: nil, include_adult: nil, include_video: nil, timezone: nil, primary_release_year: nil, primary_release_date_gte: selectedFromYear, primary_release_date_lte: selectedTillYear, release_date_gte: nil, release_date_lte: nil, vote_average_gte: selectedVoteAvarage, vote_average_lte: selectedVoteAvarage, vote_count_gte: nil, vote_count_lte: nil, with_genres: movieCode, with_cast: nil, with_crew: nil, with_companies: nil, with_keywords: nil, with_people: nil) { (data, movieArray) in
             if let movieArray = movieArray{
                 print(movieArray[0].title!)
-                self.selectedMovie = movieArray
+                //save movie array
+                self.selectedMovieArray = movieArray
+                self.performSegue(withIdentifier: "result", sender: self)
                 
             }
         }
@@ -162,6 +164,10 @@ class SearchPageViewController: UIViewController, UIPickerViewDelegate, UIPicker
         view.endEditing(true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let resultViewcontroller = segue.destination as! ResultViewController
+        resultViewcontroller.selectedMovieArray = self.selectedMovieArray
+    }
     
    
     override func didReceiveMemoryWarning() {
