@@ -29,31 +29,40 @@ class SearchPageViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var genreArray = [String]()
     var yearsArray = ["2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010" ,"2011", "", "2012", "2013", "2014" ,"2015" ,"2016" ,"2017"]
     
-    //data for search and passing(other controllers)
+    //data for search and passing(optional other controllers)
     var selectedFromYear = String()
     var selectedTillYear = String()
     var selectedGenre = String()
     var selectedDuration = String()
     var selectedTotalVotes = String()
-    var selectedVoteAvarage = String()
+    var selectedVoteAvarage = Double()
+    
+    //Selected from searchforMOvie
+    var selectedMovie = String()
     
     //api key for The Movie Database
     let apiKey = "279e6330590f5e8788be345bf87321ca"
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //set inputfield to correct state
         setInputFields()
-        fillPickers()
-        //set data to pickerviews 
+        //set data to pickerviews
+        fillPickerDataSource()
         
-        //Pickerview met jaren 
-        //Pickerview met genres 
-        //keyboard als numberpad met total/avarage votes
+        //search for movie with selected data 
+        
         
     }
+    
+    @IBAction func searchTapped(_ sender: Any) {
+        
+        DiscoverMovieMDB.discoverMovies(apikey: apiKey, language: <#T##String?#>, page: <#T##Double#>, sort_by: <#T##DiscoverSortByMovie?#>, year: <#T##Float?#>, certification_country: <#T##String?#>, certification: <#T##String?#>, certification_lte: <#T##String?#>, include_adult: <#T##Bool?#>, include_video: <#T##Bool?#>, timezone: <#T##String?#>, primary_release_year: <#T##String?#>, primary_release_date_gte: <#T##String?#>, primary_release_date_lte: <#T##String?#>, release_date_gte: selectedFromYear + "-01-01", release_date_lte: selectedTillYear + "-01-01", vote_average_gte: <#T##Double?#>, vote_average_lte: <#T##Double?#>, vote_count_gte: selectedVoteAvarage, vote_count_lte: <#T##Double?#>, with_genres: <#T##String?#>, with_cast: <#T##String?#>, with_crew: <#T##String?#>, with_companies: <#T##String?#>, with_keywords: <#T##String?#>, with_people: <#T##String?#>) { (data, movieArray) in
+            <#code#>
+        }
+        
+    }
+    
     
     func setInputFields() {
         
@@ -65,7 +74,7 @@ class SearchPageViewController: UIViewController, UIPickerViewDelegate, UIPicker
         fromYearPicker.tag = 2
         tillYearPicker.tag = 3
         
-        //set keyboard to numberpad 
+        //set keyboard to numberpad for numberfields
         totalVotesField.keyboardType = UIKeyboardType.numberPad
         voteAvarageField.keyboardType = UIKeyboardType.numberPad
         
@@ -77,7 +86,7 @@ class SearchPageViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     }
     
-    func fillPickers() {
+    func fillPickerDataSource() {
         //fill genrePicker
         GenresMDB.genres(apiKey, listType: .movie, language: "en") { (apiReturn, genres) in
             if let genres = genres{
@@ -87,6 +96,7 @@ class SearchPageViewController: UIViewController, UIPickerViewDelegate, UIPicker
                 }
             }
         }
+        
 
     
     }
@@ -118,13 +128,25 @@ class SearchPageViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 1 {
+            //update field and variable
             genreField.text = genreArray[row]
+            selectedGenre = genreArray[row]
         }else if pickerView.tag == 2 {
+            //update field and variable
             fromYearField.text = yearsArray[row]
+            selectedFromYear = yearsArray[row]
         }else if pickerView.tag == 3 {
+            //update field and variable
             tillYearField.text = yearsArray[row]
+            selectedTillYear = yearsArray[row]
         }
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    
    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
