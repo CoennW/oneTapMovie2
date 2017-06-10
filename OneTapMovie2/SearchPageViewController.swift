@@ -30,15 +30,15 @@ class SearchPageViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var yearsArray = ["2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010" ,"2011", "", "2012", "2013", "2014" ,"2015" ,"2016" ,"2017"]
     
     //data for search and passing(optional other controllers)
-    var selectedFromYear = String()
-    var selectedTillYear = String()
+    var selectedFromYear = ""
+    var selectedTillYear = "tes"
     var selectedGenre = String()
     var selectedDuration = String()
-    var selectedTotalVotes = String()
+    var selectedTotalVotes = Double()
     var selectedVoteAvarage = Double()
     
     //Selected from searchforMOvie
-    var selectedMovie = String()
+    var selectedMovie = [MovieMDB]()
     
     //api key for The Movie Database
     let apiKey = "279e6330590f5e8788be345bf87321ca"
@@ -57,8 +57,24 @@ class SearchPageViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     @IBAction func searchTapped(_ sender: Any) {
         
-        DiscoverMovieMDB.discoverMovies(apikey: apiKey, language: <#T##String?#>, page: <#T##Double#>, sort_by: <#T##DiscoverSortByMovie?#>, year: <#T##Float?#>, certification_country: <#T##String?#>, certification: <#T##String?#>, certification_lte: <#T##String?#>, include_adult: <#T##Bool?#>, include_video: <#T##Bool?#>, timezone: <#T##String?#>, primary_release_year: <#T##String?#>, primary_release_date_gte: <#T##String?#>, primary_release_date_lte: <#T##String?#>, release_date_gte: selectedFromYear + "-01-01", release_date_lte: selectedTillYear + "-01-01", vote_average_gte: <#T##Double?#>, vote_average_lte: <#T##Double?#>, vote_count_gte: selectedVoteAvarage, vote_count_lte: <#T##Double?#>, with_genres: <#T##String?#>, with_cast: <#T##String?#>, with_crew: <#T##String?#>, with_companies: <#T##String?#>, with_keywords: <#T##String?#>, with_people: <#T##String?#>) { (data, movieArray) in
-            <#code#>
+        var movieCode = String()
+        
+        selectedFromYear = fromYearField.text! + "-01-01"
+        selectedTillYear = tillYearField.text! + "-01-01"
+        selectedVoteAvarage = Double(voteAvarageField.text!)!
+        
+        if let movieGenre = MovieGenre(rawValue: selectedGenre) {
+            print(movieGenre.code)
+            movieCode = movieGenre.code
+        }
+        
+        
+        DiscoverMovieMDB.discoverMovies(apikey: apiKey, language: "EN", page: 1, sort_by: DiscoverSortByMovie.vote_average_asc, year: nil, certification_country: nil, certification: nil, certification_lte: nil, include_adult: nil, include_video: nil, timezone: nil, primary_release_year: nil, primary_release_date_gte: selectedFromYear, primary_release_date_lte: selectedTillYear, release_date_gte: nil, release_date_lte: nil, vote_average_gte: selectedVoteAvarage, vote_average_lte: selectedVoteAvarage, vote_count_gte: nil, vote_count_lte: nil, with_genres: movieCode, with_cast: nil, with_crew: nil, with_companies: nil, with_keywords: nil, with_people: nil) { (data, movieArray) in
+            if let movieArray = movieArray{
+                print(movieArray[0].title!)
+                self.selectedMovie = movieArray
+                
+            }
         }
         
     }
@@ -75,8 +91,8 @@ class SearchPageViewController: UIViewController, UIPickerViewDelegate, UIPicker
         tillYearPicker.tag = 3
         
         //set keyboard to numberpad for numberfields
-        totalVotesField.keyboardType = UIKeyboardType.numberPad
-        voteAvarageField.keyboardType = UIKeyboardType.numberPad
+        //totalVotesField.keyboardType = UIKeyboardType.numberPad
+        //voteAvarageField.keyboardType = UIKeyboardType.numberPad
         
         //set textfields input to picker
         genreField.inputView = genrePicker
