@@ -9,9 +9,16 @@
 import UIKit
 
 class watchingMovieViewController: UIViewController {
-
+    //create oulet
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var countdownLabel: UILabel!
+    //countdown data
+    var count = 3600 * 2
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //create timer
+        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
 
         // Do any additional setup after loading the view.
     }
@@ -21,7 +28,24 @@ class watchingMovieViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func update() {
+        
+        if(count > 0){
+            let minutes = String((count % 3600) / 60)
+            let seconds = String(count % 60)
+            let hours = String(count / 3600)
+            countdownLabel.text = hours + ":" + minutes + ":" + seconds
+            count -= 1
+        }
+        else {
+            performSegue(withIdentifier: "backToSearch", sender: self)
+        }
+        
+    }
 
+    @IBAction func skipTapped(_ sender: Any) {
+        count = 5
+    }
     /*
     // MARK: - Navigation
 

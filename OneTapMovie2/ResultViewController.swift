@@ -21,6 +21,7 @@ class ResultViewController: UIViewController {
     var movieID = Int()
     
     //get outlets
+    @IBOutlet weak var directedByLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
@@ -44,19 +45,13 @@ class ResultViewController: UIViewController {
         MovieMDB.credits(apiKey, movieID: movieID){
             apiReturn, credits in
             
-            /*if let credits = credits{
-                for crew in credits.crew{
-                    print(crew.job)
-                    print(crew.name)
-                }
-            }*/
-            
             var director = String()
             if let credits = credits {
                 for crew in credits.crew {
                     if crew.job == "Director" {
                         director = crew.name
                         print(director)
+                        self.directedByLabel.text = director
                         break
                     }
                 }
@@ -111,6 +106,22 @@ class ResultViewController: UIViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "searchAgain":
+                let watchingView = segue.destination as! watchingMovieViewController
+                //prepare data
+                
+            case "watchingMovie":
+                let searchPageView = segue.destination as! SearchPageViewController
+                //prepare data
+                
+            default:
+                break
+            }
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
