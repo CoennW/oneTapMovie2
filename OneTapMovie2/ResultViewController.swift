@@ -39,6 +39,7 @@ class ResultViewController: UIViewController {
         getMovieDetail()
         //set style 
         self.view.addBackground(imageName: ("bg_one_tap_movie_lines@1x.png"))
+        overviewTextField.backgroundColor = UIColor.white.withAlphaComponent(0)
         
     }
     
