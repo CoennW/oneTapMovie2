@@ -27,7 +27,7 @@ class SearchPageViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     //data for pickers
     var genreArray = [String]()
-    var yearsArray = ["2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010" ,"2011", "", "2012", "2013", "2014" ,"2015" ,"2016" ,"2017"]
+    var yearsArray = ["2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010" ,"2011", "2012", "2013", "2014" ,"2015" ,"2016" ,"2017"]
     
     //data for search and passing(optional other controllers)
     var selectedFromYear = String()
@@ -36,6 +36,7 @@ class SearchPageViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var selectedDuration = String()
     var selectedTotalVotes = Double()
     var selectedVoteAvarage = Double()
+    var textFields = [UITextField]()
     
     //Selected from searchforMOvie
     var selectedMovieArray = [MovieMDB]()
@@ -49,10 +50,21 @@ class SearchPageViewController: UIViewController, UIPickerViewDelegate, UIPicker
         setInputFields()
         //set data to pickerviews
         fillPickerDataSource()
+        //set style 
+        self.view.addBackground(imageName: ("bg_one_tap_movie_lines@1x.png"))
+        setTextFieldStyle()
         
         
+    }
+    
+    func setTextFieldStyle() {
         
+        textFields = [tillYearField, fromYearField, durationField, totalVotesField, voteAvarageField, genreField]
         
+        for item in textFields {
+            item.bottomBorder(textField: item)
+            item.setBottomBorder()
+        }
     }
     
     @IBAction func searchTapped(_ sender: Any) {
@@ -165,8 +177,17 @@ class SearchPageViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let resultViewcontroller = segue.destination as! ResultViewController
-        resultViewcontroller.selectedMovieArray = self.selectedMovieArray
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "result":
+                let resultViewcontroller = segue.destination as! ResultViewController
+                resultViewcontroller.selectedMovieArray = self.selectedMovieArray
+            case "library":
+                    break
+            default:
+                break
+            }
+        }
     }
     
    

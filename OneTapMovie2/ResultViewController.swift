@@ -37,6 +37,8 @@ class ResultViewController: UIViewController {
         movieID = selectedMovieArray[0].id!
         fillViewController()
         getMovieDetail()
+        //set style 
+        self.view.addBackground(imageName: ("bg_one_tap_movie_lines@1x.png"))
         
     }
     
@@ -109,11 +111,12 @@ class ResultViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             switch identifier {
-            case "searchAgain":
+            case "watchingMovie":
                 let watchingView = segue.destination as! watchingMovieViewController
                 //prepare data
-                
-            case "watchingMovie":
+                watchingView.watchingTitle = self.titleLabel.text!
+                watchingView.selectedMovieArray = self.selectedMovieArray
+            case "searchAgain":
                 let searchPageView = segue.destination as! SearchPageViewController
                 //prepare data
                 

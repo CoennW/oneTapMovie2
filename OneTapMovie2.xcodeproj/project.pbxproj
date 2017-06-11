@@ -19,6 +19,9 @@
 		F50304761EEC12DE0035A876 /* SearchPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50304751EEC12DE0035A876 /* SearchPageViewController.swift */; };
 		F50304781EEC6F960035A876 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50304771EEC6F960035A876 /* ResultViewController.swift */; };
 		F503047A1EED5CC80035A876 /* watchingMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50304791EED5CC80035A876 /* watchingMovieViewController.swift */; };
+		F503047C1EED7B9F0035A876 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503047B1EED7B9F0035A876 /* LibraryViewController.swift */; };
+		F503047E1EED7C170035A876 /* LibraryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503047D1EED7C170035A876 /* LibraryTableViewCell.swift */; };
+		F50304801EED990F0035A876 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503047F1EED990F0035A876 /* extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,9 @@
 		F50304751EEC12DE0035A876 /* SearchPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPageViewController.swift; sourceTree = "<group>"; };
 		F50304771EEC6F960035A876 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		F50304791EED5CC80035A876 /* watchingMovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = watchingMovieViewController.swift; sourceTree = "<group>"; };
+		F503047B1EED7B9F0035A876 /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		F503047D1EED7C170035A876 /* LibraryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryTableViewCell.swift; sourceTree = "<group>"; };
+		F503047F1EED990F0035A876 /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		F78B95E938BC43D2CC1EEE1D /* Pods-OneTapMovie2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneTapMovie2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OneTapMovie2UITests/Pods-OneTapMovie2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F859B3B0FB630DAF44F121D3 /* Pods-OneTapMovie2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneTapMovie2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OneTapMovie2/Pods-OneTapMovie2.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,7 +149,10 @@
 			children = (
 				F50304471EEC0DDD0035A876 /* AppDelegate.swift */,
 				F503044B1EEC0DDD0035A876 /* Main.storyboard */,
+				F503047D1EED7C170035A876 /* LibraryTableViewCell.swift */,
+				F503047B1EED7B9F0035A876 /* LibraryViewController.swift */,
 				F50304791EED5CC80035A876 /* watchingMovieViewController.swift */,
+				F503047F1EED990F0035A876 /* extensions.swift */,
 				F50304771EEC6F960035A876 /* ResultViewController.swift */,
 				F50304751EEC12DE0035A876 /* SearchPageViewController.swift */,
 				F503044E1EEC0DDD0035A876 /* Assets.xcassets */,
@@ -453,9 +462,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F503047A1EED5CC80035A876 /* watchingMovieViewController.swift in Sources */,
+				F503047C1EED7B9F0035A876 /* LibraryViewController.swift in Sources */,
 				F50304481EEC0DDD0035A876 /* AppDelegate.swift in Sources */,
+				F50304801EED990F0035A876 /* extensions.swift in Sources */,
 				F50304761EEC12DE0035A876 /* SearchPageViewController.swift in Sources */,
 				F50304781EEC6F960035A876 /* ResultViewController.swift in Sources */,
+				F503047E1EED7C170035A876 /* LibraryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TMDBSwift
 
 class watchingMovieViewController: UIViewController {
     //create oulet
@@ -14,12 +15,18 @@ class watchingMovieViewController: UIViewController {
     @IBOutlet weak var countdownLabel: UILabel!
     //countdown data
     var count = 3600 * 2
+    //watching title 
+    var watchingTitle = String()
+    //arrayMovie
+    var selectedMovieArray = [MovieMDB]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //create timer
-        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
-
+        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+        titleLabel.text = watchingTitle
+        //style
+        self.view.addBackground(imageName: ("bg_one_tap_movie_circel@1x.png"))
         // Do any additional setup after loading the view.
     }
 
@@ -38,9 +45,14 @@ class watchingMovieViewController: UIViewController {
             count -= 1
         }
         else {
-            performSegue(withIdentifier: "backToSearch", sender: self)
+            performSegue(withIdentifier: "goToLibrary", sender: self)
         }
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let libraryView = segue.destination as! LibraryViewController
+        libraryView.selectedMovieArray = selectedMovieArray
     }
 
     @IBAction func skipTapped(_ sender: Any) {
